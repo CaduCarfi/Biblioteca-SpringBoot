@@ -8,23 +8,25 @@ import lombok.NoArgsConstructor;
 import java.time.LocalDateTime;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "livro")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Usuario {
+public class Livro {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @Column(nullable = false)
-    private String nome;
+    private String titulo;
     @Column(nullable = false)
-    private String email;
+    private String autor;
     @Column(nullable = false, unique = true)
-    private String cpf;
+    private String isbn;
     @Column(nullable = false)
-    private LocalDateTime dataCadastro;
+    private int anoPublicacao;
     @Column(nullable = false)
-    private Boolean ativo;
+    private int quantidade;
+    @Column(nullable = false)
+    private int quantidadeDisponivel;
 }
