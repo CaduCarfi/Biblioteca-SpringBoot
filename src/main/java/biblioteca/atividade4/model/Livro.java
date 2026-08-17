@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "livro")
@@ -29,4 +30,6 @@ public class Livro {
     private int quantidade;
     @Column(nullable = false)
     private int quantidadeDisponivel;
+    @OneToMany(mappedBy = "livro")
+    private List<Emprestimo> emprestimos;
 }

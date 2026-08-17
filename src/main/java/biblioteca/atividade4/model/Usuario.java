@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name = "usuario")
@@ -27,4 +28,6 @@ public class Usuario {
     private LocalDateTime dataCadastro;
     @Column(nullable = false)
     private Boolean ativo;
+    @OneToMany(mappedBy = "usuario")
+    private List<Emprestimo> emprestimos;
 }
