@@ -1,4 +1,4 @@
-package biblioteca.atividade4.dto.Usuario;
+package biblioteca.atividade4.dto.usuario;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
