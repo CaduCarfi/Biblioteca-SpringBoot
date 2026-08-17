@@ -25,11 +25,11 @@ public class Livro {
     @Column(nullable = false, unique = true)
     private String isbn;
     @Column(nullable = false)
-    private int anoPublicacao;
+    private Integer anoPublicacao;
     @Column(nullable = false)
-    private int quantidade;
+    private Integer quantidade;
     @Column(nullable = false)
-    private int quantidadeDisponivel;
+    private Integer quantidadeDisponivel;
     @OneToMany(mappedBy = "livro")
     private List<Emprestimo> emprestimos;
 }
