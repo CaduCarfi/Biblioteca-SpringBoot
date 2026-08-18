@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface EmprestimoRepository extends JpaRepository<Emprestimo, Long> {
     boolean existsByStatusAndUsuarioId(StatusEmprestimo status, Long id);
+    boolean existsByStatusAndLivroId(StatusEmprestimo status, Long id);
 }
