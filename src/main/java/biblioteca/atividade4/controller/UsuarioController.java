@@ -1,5 +1,6 @@
 package biblioteca.atividade4.controller;
 
+import biblioteca.atividade4.dto.usuario.RelatorioUsuarioDTO;
 import biblioteca.atividade4.dto.usuario.UsuarioRequestDTO;
 import biblioteca.atividade4.dto.usuario.UsuarioResponseDTO;
 import biblioteca.atividade4.service.UsuarioService;
@@ -48,6 +49,12 @@ public class UsuarioController {
     public ResponseEntity<Void> inativar(@PathVariable Long id) {
         usuarioService.inativar(id);
         return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping("/relatorio")
+    public ResponseEntity<List<RelatorioUsuarioDTO>> gerarRelatorio() {
+        List<RelatorioUsuarioDTO> relatorio = usuarioService.gerarRelatorio();
+        return ResponseEntity.ok(relatorio);
     }
 
 }

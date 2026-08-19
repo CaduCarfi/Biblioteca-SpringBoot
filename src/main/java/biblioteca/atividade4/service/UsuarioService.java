@@ -1,14 +1,17 @@
 package biblioteca.atividade4.service;
 
 import biblioteca.atividade4.Enum.StatusEmprestimo;
+import biblioteca.atividade4.dto.usuario.RelatorioUsuarioDTO;
 import biblioteca.atividade4.dto.usuario.UsuarioRequestDTO;
 import biblioteca.atividade4.dto.usuario.UsuarioResponseDTO;
+import biblioteca.atividade4.model.Emprestimo;
 import biblioteca.atividade4.model.Usuario;
 import biblioteca.atividade4.repository.EmprestimoRepository;
 import biblioteca.atividade4.repository.UsuarioRepository;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -86,5 +89,33 @@ public class UsuarioService {
         }
         Usuario inativado = usuarioRepository.save(usuario);
         return toResponseDTO(inativado);
+    }
+
+    public List<RelatorioUsuarioDTO> gerarRelatorio(){
+        List<Usuario> usuarios = usuarioRepository.findAll();
+        List<RelatorioUsuarioDTO> relatorio = new ArrayList<>();
+
+        for (Usuario usuario : usuarios) {
+            List<Emprestimo> emprestimos = emprestimoRepository.findByUsuarioId(usuario.getId());
+
+            int totalEmprestimos = emprestimos.size();
+
+            long emAberto = emprestimos.stream()
+                    .filter(e -> e.getStatus() == StatusEmprestimo.EMPRESTADO)
+                    .count();
+
+            long devolvidos = emprestimos.stream()
+                    .filter(e -> e.getStatus() == StatusEmprestimo.DEVOLVIDO)
+                    .count();
+
+            RelatorioUsuarioDTO dto = new RelatorioUsuarioDTO(
+                    usuario.getNome(),
+                    totalEmprestimos,
+                    (int) emAberto,
+                    (int) devolvidos
+            );
+            relatorio.add(dto);
+        }
+        return relatorio;
     }
 }
