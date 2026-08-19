@@ -28,7 +28,7 @@ public class GoogleBooksService {
         try {
             return googleBooksClient.buscarPorTermo(nome).getItems();
         } catch (RestClientException e) {
-            throw new RuntimeException("Erro ao comunicar com a Google Books API");
+            throw new RuntimeException("Erro ao comunicar com a Google Books API", e);
         }
     }
 
@@ -37,7 +37,7 @@ public class GoogleBooksService {
         try {
             volume = googleBooksClient.buscarPorId(volumeId);
         } catch (RestClientException e) {
-            throw new RuntimeException("Erro ao comunicar com a Google Books API");
+            throw new RuntimeException("Erro ao comunicar com a Google Books API", e);
         }
 
         VolumeInfoDTO info = volume.getVolumeInfo();
