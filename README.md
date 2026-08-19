@@ -193,15 +193,6 @@ Uma coleção do Postman com todos os cenários de teste (sucesso e falha) está
 
 ---
 
-## 🔮 Possíveis melhorias futuras
-
-- Substituir `RuntimeException` genérica por exceções de negócio customizadas, com um `@RestControllerAdvice` centralizando o tratamento e retornando os status HTTP semanticamente corretos (404, 409, etc.)
-- Adicionar chave de API própria para a Google Books, evitando o limite de cota compartilhado
-- Cobertura de testes automatizados (unitários e de integração)
-- Migração de `RestTemplate` para `WebClient` (abordagem reativa)
-
----
-
 ## 👤 Autor
 
 Projeto desenvolvido como atividade prática de estudo em Java e Spring Boot.
